@@ -1,6 +1,6 @@
 <div class="container">
     <h1><?php echo $text_all_users; ?></h1>
-    <?php if($users){ ?>
+    <?php if ($users) { ?>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -21,7 +21,7 @@
                 <?php } ?>
             </tbody>
         </table>
-    <?php }else{ ?>
+    <?php } else { ?>
         <div class="alert alert-danger" role="alert">
             <?php echo $text_no_users; ?>
         </div>

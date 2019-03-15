@@ -1,12 +1,17 @@
 <?php
+namespace Controller;
 
-class homeController extends Controller {
+use \System\Controller;
 
-    public function index() {
+class HomeController extends Controller
+{
 
-        $this->load->language('home');
+    public function index()
+    {
 
-        $data['text_total'] = $this->load->text_hello;
+        $this->load->language('general/home');
+
+        $data['text_hello'] = $this->load->text_hello;
         
         $data ['header'] = $this->load->controller('header');
 

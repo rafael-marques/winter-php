@@ -1,5 +1,10 @@
 <?php
 
+namespace Model;
+
+use \System\Model;
+use PDO;
+
 class User extends Model
 {
     public function getUsers()
@@ -18,5 +23,4 @@ class User extends Model
         $query = $this->Conn->query("SELECT * FROM " . DB_USER . " WHERE user_id = {$user_id}");
         return $query->fetch(PDO::FETCH_ASSOC);
     }
-
 }

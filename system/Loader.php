@@ -1,17 +1,21 @@
 <?php
 
-class Loader {
+namespace System;
+
+class Loader
+{
 
     public $db;
     public $lang;
 
-    public function controller($Controller) {
-
+    public function controller($Controller)
+    {
         $ControllerFile = 'controllers/' . $Controller . 'Controller.php';
 
         if (file_exists($ControllerFile) && is_file($ControllerFile)) {
             require_once $ControllerFile;
-            $Controller = $Controller . "Controller";
+            $Controller = CONTROLLER_NAMESPACE.$Controller . "Controller";
+            $Controller = ucfirst($Controller);
             $this->controller = new $Controller();
             $this->controller->index();
         } else {
@@ -19,7 +23,8 @@ class Loader {
         }
     }
 
-    public function view($View, $Data = false) {
+    public function view($View, $Data = false)
+    {
 
         if (is_array($Data)) {
             extract($Data);
@@ -33,12 +38,13 @@ class Loader {
         }
     }
 
-    public function model($path) {
+    public function model($path)
+    {
         
-        if(strstr($path, '/')){
+        if (strstr($path, '/')) {
             $split_path = explode('/', $path);
             $Model = end($split_path);
-        }else{
+        } else {
             $Model = $path;
         }
 
@@ -46,13 +52,15 @@ class Loader {
         
         if (file_exists($ModelFile) && is_file($ModelFile)) {
             require_once $ModelFile;
+            $Model = MODEL_NAMESPACE.$Model;
             $this->db = new $Model();
         } else {
             trigger_error("{$ModelFile} not found", E_USER_ERROR);
         }
     }
 
-    public function language($Language) {
+    public function language($Language)
+    {
         $LanguageFile = 'languages/' . DEFAULT_LANGUAGE . '/' . $Language . '.php';
         if (file_exists($LanguageFile) && is_file($LanguageFile)) {
             require_once $LanguageFile;
@@ -63,5 +71,4 @@ class Loader {
             trigger_error("{$LanguageFile} not found", E_USER_ERROR);
         }
     }
-
 }

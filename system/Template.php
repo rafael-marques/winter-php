@@ -1,9 +1,11 @@
 <?php
 
-class Template extends Loader {
+namespace System;
 
-    public function render($view, $data = false) {
+class Template extends Loader
+{
+    public function render($view, $data = false)
+    {
         $this->view($view, $data);
     }
-
 }

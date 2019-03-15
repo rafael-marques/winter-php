@@ -1,0 +1,13 @@
+{
+    "name": "winter/winter",
+    "description": "PHP MVC Framwework",
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "System\\":"System",
+            "Controller\\":"controllers/",
+            "Model\\":"models/"
+        }
+    }
+}

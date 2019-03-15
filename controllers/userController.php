@@ -1,6 +1,10 @@
 <?php
 
-class userController extends Controller
+namespace Controller;
+
+use \System\Controller;
+
+class UserController extends Controller
 {
     public function index()
     {
@@ -24,6 +28,5 @@ class userController extends Controller
         $this->template->render('user/user_list', $data);
 
         $data ['footer'] = $this->load->controller('footer');
-
     }
 }
