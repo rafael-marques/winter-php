@@ -4,8 +4,12 @@ namespace System;
 
 class Url
 {
-    public function href($route)
+    public function href($route, $params = false)
     {
-        return BASE . '/index.php?action=' . $route;
+        if ($params) {
+            return BASE . '/index.php?action=' . $route . '&' . $params;
+        } else {
+            return BASE . '/index.php?action=' . $route;
+        }
     }
 }

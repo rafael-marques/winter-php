@@ -2,6 +2,7 @@
     "name": "winter/winter",
     "description": "PHP MVC Framwework",
     "require": {
+        "twig/twig": "^2.7"
     },
     "autoload": {
         "psr-4": {

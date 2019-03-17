@@ -1,5 +1,5 @@
 <?php
-namespace Controller;
+namespace Controller\General;
 
 use \System\Controller;
 
@@ -13,10 +13,10 @@ class HomeController extends Controller
 
         $data['text_hello'] = $this->load->text_hello;
         
-        $data ['header'] = $this->load->controller('header');
+        $data ['header'] = $this->load->controller('general/header');
 
-        $this->template->render('home', $data);
+        $this->template->render('general/home', $data);
 
-        $data ['footer'] = $this->load->controller('footer');
+        $data ['footer'] = $this->load->controller('general/footer');
     }
 }

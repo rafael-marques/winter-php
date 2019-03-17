@@ -1,0 +1,29 @@
+<div class="container">
+    <h1>{{text_all_users}}</h1>
+    {% if users %}
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">{{text_firstname}}</th>
+                    <th scope="col">{{text_lastname}}</th>
+                    <th scope="col">{{text_email}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <th scope="row">{{user.user_id}}</th>
+                        <td>{{user.firstname}}</td>
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.email}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            {{text_no_users}}
+        </div>
+    {% endif %}
+</div>

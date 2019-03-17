@@ -3,6 +3,8 @@
 define('BASE', 'https://localhost/winterphp'); //Production BASE URL
 define('THEME', 'default');
 define('TEMPLATE_PATH', BASE.'/views/themes/'.THEME);
+define('TEMPLATE_DIR', 'views/themes/'.THEME);
+define('TWIG_CACHE_DIR', 'twig_cache');
 
 //General Info
 define('SYS_NAME', 'Winter PHP');
@@ -19,7 +21,7 @@ define('DBPREF', 'wi');
 define('DB_USER', 'wi_user');
 
 //Default Configs
-define('DEFAULT_CONTROLLER', 'Home'.'Controller');
+define('DEFAULT_CONTROLLER', 'General\Home'.'Controller');
 define('DEFAULT_ACTION', 'index');
 define('DEFAULT_LANGUAGE', 'en-us');
 

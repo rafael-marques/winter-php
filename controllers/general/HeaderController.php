@@ -1,5 +1,5 @@
 <?php
-namespace Controller;
+namespace Controller\General;
 
 use \System\Controller;
 

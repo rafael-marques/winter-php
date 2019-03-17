@@ -1,6 +1,6 @@
 <?php
 
-namespace Controller;
+namespace Controller\User;
 
 use \System\Controller;
 
@@ -23,10 +23,10 @@ class UserController extends Controller
         $data['user_count'] = $this->load->db->getUserCount();
         $data['users'] = $this->load->db->getUsers();
         
-        $data ['header'] = $this->load->controller('header');
+        $data ['header'] = $this->load->controller('general/header');
 
         $this->template->render('user/user_list', $data);
 
-        $data ['footer'] = $this->load->controller('footer');
+        $data ['footer'] = $this->load->controller('general/footer');
     }
 }

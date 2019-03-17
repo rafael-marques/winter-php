@@ -20,14 +20,25 @@ class Application
             unset($url_params[0]);
 
             if (isset($parts[0])) :
-                $ControllerPart = $parts[0]."Controller";
+                if (count($parts) > 1) {
+                    $ControllerPart = $parts[0].'Controller';
+                    $namespace = ucfirst($parts[0]) . '\\';
+                } else {
+                    $ControllerPart = ucfirst($parts[0].'Controller');
+                    $namespace = '';
+                }
+                
+                unset($parts[0]);
 
                 if (isset($parts[1])) :
-                    $MethodPart = $parts[1];
+                    $ControllerPart = $parts[1]."Controller";
+                    unset($parts[1]);
                 endif;
 
-                unset($parts[0]);
-                unset($parts[1]);
+                if (isset($url_params[1])) :
+                    $MethodPart = $url_params[1];
+                    unset($url_params[1]);
+                endif;
 
                 if (count($parts) > 0) :
                     $params = implode(",", $parts);
@@ -35,14 +46,18 @@ class Application
                 endif;
             endif;
 
-            $ControllerPart = CONTROLLER_NAMESPACE.$ControllerPart;
-            $Controller = new $ControllerPart;
+            $ControllerPart = CONTROLLER_NAMESPACE . $namespace  . ucfirst($ControllerPart);
 
-            if (method_exists($Controller, $MethodPart)) :
-                $Controller->$MethodPart($url_params, $params);
-            else :
-                trigger_error("Controller {$MethodPart} não encontrado!", E_USER_ERROR);
-            endif;
+            if (class_exists($ControllerPart)) {
+                $Controller = new $ControllerPart;
+                if (method_exists($Controller, $MethodPart)) :
+                    $Controller->$MethodPart($url_params, $params);
+                else :
+                    trigger_error("Controller {$MethodPart} not found!", E_USER_ERROR);
+                endif;
+            } else {
+                trigger_error("Route {$ControllerPart} not found!", E_USER_ERROR);
+            }
         else :
             $Controller = CONTROLLER_NAMESPACE.$ControllerPart;
             $Controller = new $Controller();
